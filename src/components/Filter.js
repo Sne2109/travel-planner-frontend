@@ -1,21 +1,39 @@
 import React, { useState } from "react";
 
 const Filter = ({ onFilter }) => {
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [duration, setDuration] = useState("");
-
-  const handleApply = () => onFilter({ minPrice, maxPrice, duration });
+  const [min, setMin] = useState("");
+  const [max, setMax] = useState("");
 
   return (
     <div className="mb-3">
-      <h5>Filter</h5>
-      <input type="number" placeholder="Min Price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="form-control mb-2" />
-      <input type="number" placeholder="Max Price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="form-control mb-2" />
-      <input type="text" placeholder="Duration (e.g. 3 days)" value={duration} onChange={(e) => setDuration(e.target.value)} className="form-control mb-2" />
-      <button onClick={handleApply} className="btn btn-secondary">Apply Filter</button>
+      <div className="row g-2">
+        <div className="col">
+          <input
+            type="number"
+            placeholder="Min Price"
+            className="form-control"
+            value={min}
+            onChange={(e) => setMin(e.target.value)}
+          />
+        </div>
+        <div className="col">
+          <input
+            type="number"
+            placeholder="Max Price"
+            className="form-control"
+            value={max}
+            onChange={(e) => setMax(e.target.value)}
+          />
+        </div>
+        <div className="col-auto">
+          <button className="btn btn-info" onClick={() => onFilter({ minPrice: min, maxPrice: max })}>
+            Filter
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Filter;
+

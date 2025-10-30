@@ -15,7 +15,7 @@ const App = () => {
   const fetchDestinations = async (params = {}) => {
     setLoading(true);
     try {
-      const res = await axios.get("https://travel-planner-backend-1.onrender.com/api/destinations", { params });
+      const res = await axios.get("https://travel-planner-backend-h7z6.onrender.com/api/destinations", { params });
       setDestinations(res.data);
     } catch {
       alert("Failed to fetch destinations");

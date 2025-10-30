@@ -1,26 +1,22 @@
 import React from "react";
 
 const DestinationList = ({ destinations }) => {
-  if (destinations.length === 0) return <p>No destinations found.</p>;
+  if (destinations.length === 0)
+    return <p className="text-center text-muted">No destinations available.</p>;
 
   return (
-    <div className="row">
-      {destinations.map((d) => (
-        <div className="col-md-4 mb-3" key={d._id}>
-          <div className="card shadow-sm">
-            {d.image && <img src={`https://travel-planner-backend-1.onrender.com${d.image}`} className="card-img-top" alt={d.name} />}
-            <div className="card-body">
-              <h5>{d.name}</h5>
-              <p>{d.location}</p>
-              <p>{d.description}</p>
-              <p><strong>Price:</strong> ₹{d.price}</p>
-              <p><strong>Duration:</strong> {d.duration}</p>
-            </div>
-          </div>
-        </div>
-      ))}
+    <div>
+      <h4 className="mb-3">Available Destinations</h4>
+      <ul className="list-group">
+        {destinations.map((d) => (
+          <li key={d._id} className="list-group-item">
+            {d.name} — {d.location} — ₹{d.price}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
 export default DestinationList;
+

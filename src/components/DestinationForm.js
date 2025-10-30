@@ -2,46 +2,62 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const DestinationForm = ({ onAdd }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    location: "",
-    description: "",
-    price: "",
-    duration: "",
-    image: null,
-  });
+  const [form, setForm] = useState({ name: "", location: "", price: "" });
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData({ ...formData, [name]: files ? files[0] : value });
-  };
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = new FormData();
-    Object.keys(formData).forEach((key) => form.append(key, formData[key]));
-
+    if (!form.name || !form.location || !form.price) {
+      alert("Please fill all fields");
+      return;
+    }
     try {
-      await axios.post("https://travel-planner-backend-1.onrender.com/api/destinations", form, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      alert("Destination added successfully!");
+      await axios.post("https://travel-planner-backend-h7z6.onrender.com/api/destinations", form);
       onAdd();
-    } catch (err) {
+      setForm({ name: "", location: "", price: "" });
+    } catch {
       alert("Failed to add destination");
     }
   };
 
   return (
-    <form className="p-4 border rounded mb-4" onSubmit={handleSubmit}>
-      <h3>Add Destination</h3>
-      <input type="text" name="name" placeholder="Name" onChange={handleChange} className="form-control mb-2" required />
-      <input type="text" name="location" placeholder="Location" onChange={handleChange} className="form-control mb-2" required />
-      <textarea name="description" placeholder="Description" onChange={handleChange} className="form-control mb-2" required />
-      <input type="number" name="price" placeholder="Price" onChange={handleChange} className="form-control mb-2" required />
-      <input type="text" name="duration" placeholder="Duration" onChange={handleChange} className="form-control mb-2" required />
-      <input type="file" name="image" onChange={handleChange} className="form-control mb-2" />
-      <button type="submit" className="btn btn-primary">Add Destination</button>
+    <form className="mb-4" onSubmit={handleSubmit}>
+      <div className="row g-2">
+        <div className="col">
+          <input
+            type="text"
+            name="name"
+            className="form-control"
+            placeholder="Destination Name"
+            value={form.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col">
+          <input
+            type="text"
+            name="location"
+            className="form-control"
+            placeholder="Location"
+            value={form.location}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col">
+          <input
+            type="number"
+            name="price"
+            className="form-control"
+            placeholder="Price"
+            value={form.price}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-auto">
+          <button className="btn btn-primary">Add</button>
+        </div>
+      </div>
     </form>
   );
 };
