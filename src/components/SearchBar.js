@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
-const SearchBar = ({ onSearch }) => {
+const Filter = ({ onFilter }) => {
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [duration, setDuration] = useState("");
+
+  const handleApply = () => onFilter({ minPrice, maxPrice, duration });
+
   return (
-    <input
-      type="text"
-      className="form-control mb-3"
-      placeholder="Search by name, location, or description..."
-      onChange={(e) => onSearch(e.target.value)}
-    />
+    <div className="mb-3">
+      <h5>Filter</h5>
+      <input type="number" placeholder="Min Price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="form-control mb-2" />
+      <input type="number" placeholder="Max Price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="form-control mb-2" />
+      <input type="text" placeholder="Duration (e.g. 3 days)" value={duration} onChange={(e) => setDuration(e.target.value)} className="form-control mb-2" />
+      <button onClick={handleApply} className="btn btn-secondary">Apply Filter</button>
+    </div>
   );
 };
 
-export default SearchBar;
+export default Filter;
+
 

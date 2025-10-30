@@ -22,72 +22,26 @@ const DestinationForm = ({ onAdd }) => {
     Object.keys(formData).forEach((key) => form.append(key, formData[key]));
 
     try {
-      await axios.post(
-        "https://travel-planner-backend-h7z6.onrender.com/api/destinations",
-        form,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-      alert("✅ Destination added successfully!");
-      onAdd(); // refresh list
+      await axios.post("https://travel-planner-backend-1.onrender.com/api/destinations", form, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      alert("Destination added successfully!");
+      onAdd();
     } catch (err) {
-      console.error("Error adding destination:", err);
-      alert("❌ Failed to add destination. Check backend URL or CORS settings.");
+      alert("Failed to add destination");
     }
   };
 
   return (
     <form className="p-4 border rounded mb-4" onSubmit={handleSubmit}>
       <h3>Add Destination</h3>
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        onChange={handleChange}
-        className="form-control mb-2"
-        required
-      />
-      <input
-        type="text"
-        name="location"
-        placeholder="Location"
-        onChange={handleChange}
-        className="form-control mb-2"
-        required
-      />
-      <textarea
-        name="description"
-        placeholder="Description"
-        onChange={handleChange}
-        className="form-control mb-2"
-        required
-      />
-      <input
-        type="number"
-        name="price"
-        placeholder="Price"
-        onChange={handleChange}
-        className="form-control mb-2"
-        required
-      />
-      <input
-        type="text"
-        name="duration"
-        placeholder="Duration"
-        onChange={handleChange}
-        className="form-control mb-2"
-        required
-      />
-      <input
-        type="file"
-        name="image"
-        onChange={handleChange}
-        className="form-control mb-2"
-      />
-      <button type="submit" className="btn btn-primary">
-        Add Destination
-      </button>
+      <input type="text" name="name" placeholder="Name" onChange={handleChange} className="form-control mb-2" required />
+      <input type="text" name="location" placeholder="Location" onChange={handleChange} className="form-control mb-2" required />
+      <textarea name="description" placeholder="Description" onChange={handleChange} className="form-control mb-2" required />
+      <input type="number" name="price" placeholder="Price" onChange={handleChange} className="form-control mb-2" required />
+      <input type="text" name="duration" placeholder="Duration" onChange={handleChange} className="form-control mb-2" required />
+      <input type="file" name="image" onChange={handleChange} className="form-control mb-2" />
+      <button type="submit" className="btn btn-primary">Add Destination</button>
     </form>
   );
 };
