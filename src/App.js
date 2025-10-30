@@ -7,7 +7,7 @@ import Filter from "./components/Filter";
 import Suggestions from "./components/Suggestions";
 import Spinner from "./components/spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css"; // 👈 add this line
+import "./App.css"; // ✅ Ensure you import your CSS
 
 const App = () => {
   const [destinations, setDestinations] = useState([]);
@@ -32,8 +32,9 @@ const App = () => {
   return (
     <div className="app-container">
       <div className="overlay"></div>
-      <div className="content-container">
-        <h2 className="text-center mb-4 heading">🌴 Travel Planner</h2>
+
+      <div className="content-container animate-fade">
+        <h2 className="text-center heading mb-4">🌍 Travel Planner</h2>
         <DestinationForm onAdd={() => fetchDestinations()} />
         <SearchBar onSearch={(q) => fetchDestinations({ search: q })} />
         <Filter onFilter={(f) => fetchDestinations(f)} />

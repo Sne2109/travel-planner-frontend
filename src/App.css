@@ -2,7 +2,7 @@
 .app-container {
   position: relative;
   min-height: 100vh;
-  background-image: url("https://images.pexels.com/photos/335393/pexels-photo-335393.jpeg?cs=srgb&dl=pexels-nastyasensei-66707-335393.jpg&fm=jpg"); /* 👈 Place image in public/ */
+  background-image: url("https://images.pexels.com/photos/335393/pexels-photo-335393.jpeg?cs=srgb&dl=pexels-nastyasensei-66707-335393.jpg&fm=jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -47,7 +47,7 @@
   letter-spacing: 1px;
 }
 
-/* ======= Buttons ======= */
+/* Buttons */
 button, .btn-primary {
   background: linear-gradient(90deg, #00b894, #0984e3);
   border: none;
@@ -57,12 +57,13 @@ button, .btn-primary {
   color: white;
   transition: all 0.3s ease;
 }
+
 button:hover, .btn-primary:hover {
   transform: translateY(-2px);
   background: linear-gradient(90deg, #0984e3, #00cec9);
 }
 
-/* ======= Input fields ======= */
+/* Input fields */
 input, textarea, select {
   background: rgba(255, 255, 255, 0.85);
   border: none;
@@ -72,7 +73,7 @@ input, textarea, select {
   margin-bottom: 10px;
 }
 
-/* ======= Destination Cards ======= */
+/* Destination Cards */
 .card {
   border: none;
   border-radius: 16px;
@@ -81,20 +82,17 @@ input, textarea, select {
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
+
 .card:hover {
   transform: scale(1.03);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
-.card-img-top {
-  height: 180px;
-  object-fit: cover;
-  border-radius: 16px 16px 0 0;
-}
 
-/* ======= Fade-in animation ======= */
+/* Fade-in animation */
 .animate-fade {
   animation: fadeIn 1.2s ease-in-out;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -106,7 +104,7 @@ input, textarea, select {
   }
 }
 
-/* ======= Responsive ======= */
+/* Responsive */
 @media (max-width: 768px) {
   .content-container {
     width: 95%;
