@@ -1,6 +1,6 @@
 import React from "react";
 
-const spinner = () => (
+const Spinner = () => (
   <div className="text-center mt-4">
     <div className="spinner-border text-primary" role="status">
       <span className="visually-hidden">Loading...</span>
@@ -8,7 +8,7 @@ const spinner = () => (
   </div>
 );
 
-export default spinner;
+export default Spinner;
 
 
 
